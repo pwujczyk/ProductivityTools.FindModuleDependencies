@@ -33,7 +33,7 @@ function ProcessPsd1Files()
 function FilterDependencies{
 
 	[cmdletbinding()]
-	param([Hashtable]$psd1Results, [string]$filter)
+	param([Hashtable]$psd1Results, [string]$filter,[bool]$Like)
 	
 	$psd1ResultsFiltered=@{}
 	
@@ -41,11 +41,23 @@ function FilterDependencies{
 	{
 		foreach($dependency in $psd1Result.Value)
 		{
-			if ($dependency -eq $filter)
+			if($Like)
 			{
-				Write-Verbose "file which contains dependency $($psd1Result.Key)"
-				$psd1ResultsFiltered.add($psd1Result.key, $psd1Result.Value)
+				if ($dependency -like $filter)
+				{
+					Write-Verbose "file which contains dependency $($psd1Result.Key)"
+					$psd1ResultsFiltered.add($psd1Result.key, $psd1Result.Value)
+				}	
 			}
+			else
+			{
+				if ($dependency -eq $filter)
+				{
+					Write-Verbose "file which contains dependency $($psd1Result.Key)"
+					$psd1ResultsFiltered.add($psd1Result.key, $psd1Result.Value)
+				}
+			}
+			
 		}
 	}
 	return $psd1ResultsFiltered
@@ -54,7 +66,7 @@ function FilterDependencies{
 function Find-ModuleDependencies {
 	
 	[cmdletbinding()]
-	param([string]$DependencyName,[string]$Path)
+	param([string]$DependencyName,[string]$Path,[switch]$Like)
 
 	if ($Path -eq "")
 	{
@@ -67,7 +79,7 @@ function Find-ModuleDependencies {
 	
 	if ($DependencyName -ne [String]::Empty)
 	{
-		$psd1ResultsFiltered= FilterDependencies $psd1Results $DependencyName
+		$psd1ResultsFiltered= FilterDependencies $psd1Results $DependencyName $Like
 		Write-Output $psd1ResultsFiltered
 	}
 	else
