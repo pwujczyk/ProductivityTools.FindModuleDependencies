@@ -1,7 +1,7 @@
 <!--Category:PowerShell--> 
  <p align="right">
     <a href="https://www.powershellgallery.com/packages/ProductivityTools.FindModuleDependencies/"><img src="Images/Header/Powershell_border_40px.png" /></a>
-    <a href="http://productivitytools.tech/convert-documents/"><img src="Images/Header/ProductivityTools_green_40px_2.png" /><a> 
+    <a href="http://productivitytools.tech/find-module-dependencies/"><img src="Images/Header/ProductivityTools_green_40px_2.png" /><a> 
     <a href="https://github.com/pwujczyk/ProductivityTools.FindModuleDependencies/"><img src="Images/Header/Github_border_40px.png" /></a>
 </p>
 <p align="center">
@@ -12,16 +12,16 @@
 
 # Find Module Dependencies
 
-
 It looks recursively in the directory to find all psd1 files, next it takes the RequiredModules key and writes it. If the DependencyName parameter is provided. It will write only those modules which require a given dependency to work.
 
+<!--more-->
 
 Find-ModuleDependencies without any parameters will go through all directories in the given path and will search for psd1 files, next it will write on the screen value of the RequiredModules key.
 
 ```PowerShell
 Find-ModuleDependencies -Path d:\github |Out-GridView
 ``` 
-
+<!--og-image-->
 ![FindAllDependencies](Images/FindAllDependencies.png)
 
 If you want to look for a particular dependency just use the parameter DependencyName then it will show just those modules which need provided dependency
