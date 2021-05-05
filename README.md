@@ -1,11 +1,16 @@
-<p align="right">
- <a href="https://www.powershellgallery.com/packages/ProductivityTools.PSFindModuleDependencies">
-  <img src="http://cdn.productivitytools.tech/Powershell40px.png" /></a>
-<a href="http://www.productivitytools.tech/find-moduledependencies/">
-<img src="http://cdn.productivitytools.tech/Blog40px.png" /><a>
+<!--Category:PowerShell--> 
+ <p align="right">
+    <a href="https://www.powershellgallery.com/packages/ProductivityTools.ConvertDocuments/"><img src="Images/Header/Powershell_border_40px.png" /></a>
+    <a href="http://productivitytools.tech/convert-documents/"><img src="Images/Header/ProductivityTools_green_40px_2.png" /><a> 
+    <a href="https://github.com/pwujczyk/ProductivityTools.ConvertDocuments/"><img src="Images/Header/Github_border_40px.png" /></a>
+</p>
+<p align="center">
+    <a href="http://http://productivitytools.tech/">
+        <img src="Images/Header/LogoTitle_green_500px.png" />
+    </a>
 </p>
 
-# ProductivityTools.PSFindModuleDependencies
+# Find Module Dependencies
 
 
 It looks recursively in directory to find all psd1 files, next it take RequiredModules key and writes it. If DependencyName parameter is provided. It will wrote only those modules which requires given dependency to work.
