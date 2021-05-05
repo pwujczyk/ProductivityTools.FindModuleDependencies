@@ -1,0 +1,18 @@
+@startuml
+title Get Module Dependencies
+
+start
+: Get all psd1 File;
+: Get all dependencies from each psd1 file;
+if(DependencyName provided) then (yes)
+: filter dependencies;
+ if(Like provided)then(yes)
+  :use -Like condition;
+  else(no)
+  :use -eq condition;
+  endif
+else (no)
+endif
+: Write result;
+stop
+@enduml

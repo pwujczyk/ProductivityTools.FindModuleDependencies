@@ -1,8 +1,8 @@
 <!--Category:PowerShell--> 
  <p align="right">
-    <a href="https://www.powershellgallery.com/packages/ProductivityTools.ConvertDocuments/"><img src="Images/Header/Powershell_border_40px.png" /></a>
+    <a href="https://www.powershellgallery.com/packages/ProductivityTools.FindModuleDependencies/"><img src="Images/Header/Powershell_border_40px.png" /></a>
     <a href="http://productivitytools.tech/convert-documents/"><img src="Images/Header/ProductivityTools_green_40px_2.png" /><a> 
-    <a href="https://github.com/pwujczyk/ProductivityTools.ConvertDocuments/"><img src="Images/Header/Github_border_40px.png" /></a>
+    <a href="https://github.com/pwujczyk/ProductivityTools.FindModuleDependencies/"><img src="Images/Header/Github_border_40px.png" /></a>
 </p>
 <p align="center">
     <a href="http://http://productivitytools.tech/">
@@ -13,22 +13,40 @@
 # Find Module Dependencies
 
 
-It looks recursively in directory to find all psd1 files, next it take RequiredModules key and writes it. If DependencyName parameter is provided. It will wrote only those modules which requires given dependency to work.
+It looks recursively in the directory to find all psd1 files, next it takes the RequiredModules key and writes it. If the DependencyName parameter is provided. It will write only those modules which require a given dependency to work.
 
 
-Find-ModuleDependencies without any parameters will go through all directories in given path and will search for psd1 files, next it will write on the screen value of the RequiredModules key.
+Find-ModuleDependencies without any parameters will go through all directories in the given path and will search for psd1 files, next it will write on the screen value of the RequiredModules key.
 
-```powershell
-Find-ModuleDependencies
+```PowerShell
+Find-ModuleDependencies -Path d:\github |Out-GridView
 ``` 
 
-You can also pass Path parameter if you want to perform analysis for different directory.
-```powershell
-Find-ModuleDependencies -Path C:\Github
-```
-If you want to look for particular dependency just use parameter DependencyName then it will show just those modules which needs provided dependency
+![FindAllDependencies](Images/FindAllDependencies.png)
 
-```powershell
-Find-ModuleDependencies -Dependency ""ProductivityTools.PSMasterConfiguration"
+If you want to look for a particular dependency just use the parameter DependencyName then it will show just those modules which need provided dependency
+
+```PowerShell
+Find-ModuleDependencies -Path d:\github -DependencyName ProductivityTools.MasterConfiguration -Verbose 
 ```
-I am using this when, I am changing module and I need to know which modules should be updated.
+
+![Find Equals](Images/FindEquals.png)
+
+
+You can also use **Like** switch parameter if you are not sure how the dependency is named.
+
+```PowerShell
+Find-ModuleDependencies -Path d:\github -DependencyName get -Like -Verbose
+```
+
+![Find Equals](Images/FindLike.png)
+
+When using **like** switch module automatically adds * to the query.
+```PowerShell
+if ($dependency -like "*$filter*") {
+    ...
+```
+
+The below diagram shows on a high level how the module works.
+
+![Find Equals](Images/Diagram.png)
