@@ -12,9 +12,12 @@
 
 # Find Module Dependencies
 
-It looks recursively in the directory to find all psd1 files, next it takes the RequiredModules key and writes it. If the DependencyName parameter is provided. It will write only those modules which require a given dependency to work.
+It finds all modules which are dependent on given module. 
 
 <!--more-->
+
+It looks recursively in the directory to find all psd1 files, next it takes the RequiredModules key and writes it. If the DependencyName parameter is provided. It will write only those modules which require a given dependency to work.
+
 
 Find-ModuleDependencies without any parameters will go through all directories in the given path and will search for psd1 files, next it will write on the screen value of the RequiredModules key.
 
